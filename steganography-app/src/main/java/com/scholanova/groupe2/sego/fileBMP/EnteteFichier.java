@@ -1,13 +1,6 @@
 package com.scholanova.groupe2.sego.fileBMP;
 
 public class EnteteFichier {
-//	public final static int enteteFichierSize = 14;
-//
-//	public EnteteFichier(byte[] data) {
-//		if (data==null||data.length!=14){
-//			throw new Exception ("Probleme dans l'entete fichier");
-//		}
-//	}
 	
 	private byte[] signature = new byte[2];
 	private int fileSize;

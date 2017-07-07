@@ -118,12 +118,10 @@ public class FileBMP {
 			byte[] tabLongueurHiddenFile = new byte [8];
 			bis.read(tabLongueurHiddenFile);
 			long nbOctet = FileToHide.sizeNewFile(tabLongueurHiddenFile);
-			System.out.println(nbOctet);
 			
 			byte[] tabData = new byte [(int) (nbOctet*4)];
 			bis.read(tabData);
 			byte[] data = FileToHide.dataNewFile(tabData);
-//			System.out.println(Arrays.toString(data));
 			bis.close();
 			return data;
 			

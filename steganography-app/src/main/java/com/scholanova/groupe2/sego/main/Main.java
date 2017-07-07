@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Scanner;
 
 import com.scholanova.groupe2.sego.fileBMP.FileBMP;
 import com.scholanova.groupe2.sego.hiddenFile.FileToHide;
@@ -12,12 +13,24 @@ import com.scholanova.groupe2.sego.hiddenFile.FileToHide;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-		File file = new File ("D:\\AgilityFactory\\test\\imageBMP.bmp");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("entrer le chemin ainsi que le nom de l'image BMP que vous souhaitez utiliser avec son extension:");
+		String imageBMP = sc.nextLine();
+		System.out.println("entrer le chemin ainsi que le nom du fichier que vous souhaitez cacher avec son extension:");
+		String hiddenFile = sc.nextLine();
+		System.out.println("entrer le chemin ainsi que le nom de l'image BMP créée avec son extension:");
+		String newImageBMP = sc.nextLine();
+		System.out.println("entrer le chemin ainsi que le nom du fichier que vous souhaitez récupérer avec son extension:");
+		String newHiddenFile = sc.nextLine();
+		sc.close();
+	
+		
+		File file1 = new File (imageBMP);
 		FileBMP fileBMP = new FileBMP();
-		fileBMP.readFileBMP(file);		
+		fileBMP.readFileBMP(file1);		
 		
 		
-		File file2 = new File ("D:\\AgilityFactory\\test\\imageCache.png");
+		File file2 = new File (hiddenFile);
 		FileToHide fileToHide = new FileToHide(file2);
 		
 		if (!fileToHide.isEnoughtOctetToHide(fileBMP.getImageSize())){
@@ -26,7 +39,7 @@ public class Main {
 		}
 		
 		byte bitsToHide;
-		System.out.println(fileToHide.getSizeFile());
+
 //		on cache longueur de FileToHide
 		while ((bitsToHide=fileToHide.long2Bits()) != -1){
 			fileBMP.hidBits(bitsToHide);	
@@ -38,14 +51,14 @@ public class Main {
 		}
 	
 //		on sauvegarde le new fichier créer
-		File file3 = new File ("D:\\AgilityFactory\\test\\newImageBMP.bmp");
+		File file3 = new File (newImageBMP);
 		fileBMP.saveNewBMPFile(file3);
 		
 		
 //		on recupere le fichier cache
 		byte[] data = fileBMP.readNewFileBMP(file3);
 		if (data !=null){
-			File file4 = new File ("D:\\AgilityFactory\\test\\newImageCache.png");
+			File file4 = new File (newHiddenFile);
 			FileOutputStream fos;
 			try {
 				fos = new FileOutputStream(file4);

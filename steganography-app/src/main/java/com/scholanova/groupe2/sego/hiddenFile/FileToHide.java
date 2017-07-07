@@ -49,15 +49,11 @@ public class FileToHide {
 		if (nbBitsRestantSize == 0){
 			return -1;
 		}
-		System.out.println("sizeFileToSend audebut ="+sizeFileToSend);
 		
 		byte ret = (byte) (sizeFileToSend & 0x03);
-		System.out.println("donnée envoyée=" +ret);
 		
 		sizeFileToSend = (sizeFileToSend >>> 2);
 		nbBitsRestantSize -=2;
-		System.out.println("sizeFileToSend final = "+sizeFileToSend);
-		System.out.println("");
 		return ret;
 	}
 	
