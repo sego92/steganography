@@ -50,12 +50,12 @@ public class Main {
 			fileBMP.hidBits(bitsToHide);
 		}
 	
-//		on sauvegarde le new fichier créer
+//		on sauvegarde le new fichier créé
 		File file3 = new File (newImageBMP);
 		fileBMP.saveNewBMPFile(file3);
 		
 		
-//		on recupere le fichier cache
+//		on récupère le fichier caché
 		byte[] data = fileBMP.readNewFileBMP(file3);
 		if (data !=null){
 			File file4 = new File (newHiddenFile);

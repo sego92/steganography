@@ -36,7 +36,6 @@ public class FileBMP {
 			enteteFichier = new EnteteFichier();
 			enteteFichier.setSignature(tabEnteteFichier);
 			
-			
 			int j= (tabEnteteFichier[5]<<24)&0xff000000|
 				   (tabEnteteFichier[4]<<16)&0x00ff0000|
 				   (tabEnteteFichier[3]<< 8)&0x0000ff00|
@@ -48,6 +47,7 @@ public class FileBMP {
 				(tabEnteteFichier[11]<< 8)&0x0000ff00|
 				(tabEnteteFichier[10]<< 0)&0x000000ff;
 			enteteFichier.setOffset(j);
+			
 			
 			tabEnteteBMP = new byte [40];
 			
@@ -64,6 +64,7 @@ public class FileBMP {
 			int h = (tabEnteteBMP[15]<< 8)&0x0000ff00|
 				(tabEnteteBMP[14]<< 0)&0x000000ff;
 			enteteBMP.setNumberBitsByPixel(h);
+			
 			
 			tabCorps = new byte [(int) (file.length()-54)];
 			bis.read(tabCorps);
@@ -106,6 +107,7 @@ public class FileBMP {
 		
 	}
 	
+	
 	public byte[] readNewFileBMP (File file){
 		FileInputStream fis;
 		try {
@@ -134,8 +136,8 @@ public class FileBMP {
 		}
 		return null;
 		
-		
 	}
+	
 	
 	public int getImageSize (){
 		return enteteBMP.getImageSize();
